@@ -5,25 +5,25 @@ namespace efcore_navigation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EmployeeController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
 
         [HttpGet]
-        [Route("users")]
+        [Route("")]
         public async Task<IActionResult> Get()
         {
             return Ok();
         }
 
         [HttpGet]
-        [Route("users/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             return Ok();
         }
 
         [HttpPost]
-        [Route("users")]
+        [Route("")]
         public async Task<IActionResult> Post(CreateUserRequest user)
         {
             return Created("/api/Users", "User Created Successfully");
