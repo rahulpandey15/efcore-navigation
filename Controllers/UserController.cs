@@ -67,6 +67,7 @@ namespace efcore_navigation.Controllers
                          Name = request.Name,
                          Email = request.Email,
                          DepartmentId = department.Id,
+                         Gender = request.Gender,   
                          Profile = new UserProfile()
                          {
                              Address = request.UserProfile.Address,

@@ -8,6 +8,8 @@
 
         public string Email { get; set; } = default!;
 
+        public string Gender { get; set;  }  = default!;
+
         public int DepartmentId { get; set; } // Foreign key
 
         public Department Department { get; set; } = default!; // Navigation property
