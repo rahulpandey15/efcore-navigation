@@ -1,6 +1,7 @@
 ﻿using efcore_navigation.Data;
 using efcore_navigation.RequestModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace efcore_navigation.Controllers
@@ -30,7 +31,7 @@ namespace efcore_navigation.Controllers
                     Email = z.Email,
                     DepartmentName = z.Department.DepartmentName,
                     Address = z.Profile.Address,
-                    City= z.Profile.City,
+                    City = z.Profile.City,
                 })
                 .ToListAsync();
 
@@ -67,7 +68,7 @@ namespace efcore_navigation.Controllers
                          Name = request.Name,
                          Email = request.Email,
                          DepartmentId = department.Id,
-                         Gender = request.Gender,   
+                         Gender = request.Gender,
                          Profile = new UserProfile()
                          {
                              Address = request.UserProfile.Address,
@@ -82,6 +83,21 @@ namespace efcore_navigation.Controllers
 
 
             return Created("/api/Department", "Department Created Successfully");
+        }
+
+
+        [HttpGet]
+        [Route("fetchByDepartment/{departmentId}")]
+        public async Task<IActionResult> FetchByDeparmentId(int departmentId)
+        {
+            var myParams = new SqlParameter("@Id", departmentId);
+
+            var response =
+                      await sampledbContext.FetchEmployeesByDepartments
+                        .FromSqlRaw("Exec dbo.usp_FetchEmployeesByDepartmentId @Id", myParams)
+                        .ToListAsync();
+
+            return Ok(response);
         }
 
 
