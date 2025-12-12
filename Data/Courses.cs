@@ -1,6 +1,6 @@
 ﻿namespace efcore_navigation.Data
 {
-    public class Courses
+    public class Courses : AuditEntity
     {
         public int Id { get; set; }
         public string CourseName { get; set; } = default!;

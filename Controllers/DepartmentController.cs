@@ -40,7 +40,7 @@ namespace efcore_navigation.Controllers
             Department departmentObj
                  = new Department()
                  {
-                     DepartmentName = request.DepartmentName
+                     DepartmentName = request.DepartmentName,
                  };
 
             await sampledbContext.Departments.AddAsync(departmentObj);
