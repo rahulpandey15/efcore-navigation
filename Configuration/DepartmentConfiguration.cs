@@ -8,6 +8,10 @@ namespace efcore_navigation.Configuration
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
+            builder.Property(x => x.DepartmentName)
+                .HasMaxLength(50)
+                .IsRequired();
+
             builder.HasMany(x => x.Users)
                    .WithOne(x => x.Department)
                    .HasForeignKey(x => x.DepartmentId)
