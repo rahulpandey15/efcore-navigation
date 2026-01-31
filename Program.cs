@@ -25,8 +25,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.MapControllers();
 
+
+SeedData.Initialize(app.Services);
 
 app.UseHttpsRedirection();
 
