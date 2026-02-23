@@ -23,8 +23,6 @@ namespace efcore_navigation.Controllers
         {
             var department = await sampledbContext.Departments.ToListAsync(); // SELECT * FROM DEPARTMENTS
 
-            Console.WriteLine($"The current state of entity is {sampledbContext.Entry(department).State}");
-
 
             return Ok(department);
         }
