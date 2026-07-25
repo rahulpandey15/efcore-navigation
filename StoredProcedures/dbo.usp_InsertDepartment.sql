@@ -1,5 +1,4 @@
-use SampleDb
-go
+
 
 CREATE PROCEDURE dbo.usp_InsertDepartment	
 	@DepartmentName    NVARCHAR(100)

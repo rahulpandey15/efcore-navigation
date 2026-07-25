@@ -16,6 +16,10 @@ namespace efcore_navigation.Configuration
                    .WithOne(x => x.Department)
                    .HasForeignKey(x => x.DepartmentId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+
+            builder.Property(x => x.RowVersion)
+                .IsRowVersion(); //
         }
     }
 }

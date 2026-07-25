@@ -1,4 +1,6 @@
-﻿namespace efcore_navigation.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace efcore_navigation.Data
 {
     public class Department : AuditEntity
     {
@@ -8,7 +10,6 @@
 
         public ICollection<User> Users { get; set; } = []; // Navigation property
 
-
-      
+        public byte[] RowVersion { get; set;  }
     }
 }

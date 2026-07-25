@@ -12,6 +12,10 @@ namespace efcore_navigation.Configuration
                   .WithOne(p => p.User)
                   .HasForeignKey<UserProfile>(p => p.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
+
+
+
+            builder.HasQueryFilter(x => x.Gender == "F");
         }
     }
 }

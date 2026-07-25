@@ -70,27 +70,30 @@ namespace efcore_navigation.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(int departmentId,string updatedName)
         {
-            var records
-                 = await sampledbContext.Departments
-                 .Where(x => x.Id == departmentId) // filtering 
-                 .ExecuteUpdateAsync(setter => setter
-                    .SetProperty(x => x.DepartmentName, updatedName)
-                    .SetProperty(x => x.CreatedBy, "MyDemoUser"));
+            var departmentDetails
+                 = sampledbContext.Departments.Find(departmentId);
 
 
+            if (departmentDetails is null)
+                throw new ArgumentNullException($"No department exists in database with Department Id {departmentId}");
 
+            departmentDetails.DepartmentName = updatedName;
 
+            try
+            {
+                int rowsImpacted = await sampledbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
 
-            //var departmentDetails
-            //     = sampledbContext.Departments.Find(departmentId);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
 
-            //if (departmentDetails is null)
-            //    throw new ArgumentNullException($"No department exists in database with Department Id {departmentId}");
-
-            //departmentDetails.DepartmentName = updatedName;
-
-            //int rowsImpacted = await sampledbContext.SaveChangesAsync();
+        
 
             return Ok();
         }

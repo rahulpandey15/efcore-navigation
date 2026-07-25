@@ -22,19 +22,7 @@ namespace efcore_navigation.Controllers
         [Route("")]
         public async Task<IActionResult> Get()
         {
-            var users = await sampledbContext.Users
-                .Include(x => x.Department)
-                .Include(x => x.Profile)
-                .Select(z => new
-                {
-                    UserName = z.Name,
-                    Email = z.Email,
-                    DepartmentName = z.Department.DepartmentName,
-                    Address = z.Profile.Address,
-                    City = z.Profile.City,
-                })
-                .ToListAsync();
-
+            var users = await sampledbContext.Users.ToListAsync();
 
             return Ok(users);
         }
